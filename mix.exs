@@ -24,6 +24,8 @@ defmodule Gary.Mixfile do
   defp deps do
     [{:phoenix, github: "phoenixframework/phoenix"},
      {:cowboy, "~> 1.0"},
-     { :json,   "~> 0.3.0"}]
+     { :json,   "~> 0.3.0"},
+     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.0"},
+     {:httpotion, "~> 0.2.0"}]
   end
 end

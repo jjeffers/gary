@@ -8,7 +8,17 @@ defmodule Gary.PageController do
   end
 
   def create(conn, _params) do
-  	json conn, JSON.encode!(%{text: "This would a post response for Slack."})
+
+  	:ssl.start()
+  	:ibrowse.start()
+  	webhook_url = "https://hooks.slack.com/services/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"
+
+    HTTPotion.post(webhook_url, JSON.encode!(%{text: "African or European?"}), 
+    	["Content-Type": "application/json"])
+
+  	conn
+  	|> put_status(200)
+
   end
 
 end
