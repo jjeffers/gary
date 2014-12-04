@@ -4,7 +4,7 @@ defmodule Gary.PageController do
   plug :action
 
   def index(conn, _params) do
-    render conn, "index.html"
+    text conn, "Hello, I am very <rolls dice> - happy to meet you!"
   end
 
   def create(conn, _params) do
