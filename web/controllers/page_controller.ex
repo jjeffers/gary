@@ -8,7 +8,7 @@ defmodule Gary.PageController do
   end
 
   def create(conn, _params) do
-  	json conn, JSON.encode!(%{text: "Hello, I am very <rolls dice> - happy to see you!"})
+  	json conn, JSON.encode!(%{text: "This would a post response for Slack."})
   end
 
 end
