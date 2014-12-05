@@ -4,24 +4,42 @@ defmodule Gary.PageController do
   plug :action
 
   def index(conn, _params) do
-    text conn, "Hello, I am very <rolls dice> - happy to meet you!"
+    text conn, "Hello, I'm Gary!"
+  end
+
+  def send_slack_response(reply_text) do
+
+    if System.get_env("SLACK_ENV") == "production" do
+
+      :ssl.start()
+      :ibrowse.start()
+      
+      webhook_url = System.get_env("SLACK_WEBHOOK_URL")
+
+      HTTPotion.post(webhook_url, JSON.encode!(%{text: reply_text}), 
+        ["Content-Type": "application/json"])
+
+      "ok"
+    else
+      reply_text
+    end
+
+  end
+
+
+  def handle_gary_request(%{"text" => "gary say hello"}) do
+    "Hello, it's <rolls dice> nice to meet you."
+  end
+
+  def handle_gary_request(_params) do
+    "African or European?"
   end
 
   def create(conn, _params) do
-  	
-  	webhook_url = System.get_env("SLACK_WEBHOOK_URL")
-  	IO.puts webhook_url
-  	if System.get_env("SLACK_ENV") == "production" do
-  		:ssl.start()
-  		:ibrowse.start()
-  		
-  		
-    	HTTPotion.post(webhook_url, JSON.encode!(%{text: "African or European?"}), 
-    		["Content-Type": "application/json"])
-    end
 
-    text conn, "thanks!"
-
+    response_text = handle_gary_request(_params)
+    text conn, send_slack_response(response_text)
+      
   end
 
 end
