@@ -7,7 +7,7 @@ defmodule Gary.PageController do
     text conn, "Hello, I'm Gary!"
   end
 
-  def send_slack_response(reply_text) do
+  def send_slack_response(reply) do
 
     if System.get_env("SLACK_ENV") == "production" do
 
@@ -16,23 +16,47 @@ defmodule Gary.PageController do
       
       webhook_url = System.get_env("SLACK_WEBHOOK_URL")
 
-      HTTPotion.post(webhook_url, JSON.encode!(%{text: reply_text}), 
+      HTTPotion.post(webhook_url, JSON.encode!(reply), 
         ["Content-Type": "application/json"])
 
       "ok"
     else
-      reply_text
+      JSON.encode!(reply)
     end
 
   end
 
 
   def handle_gary_request(%{"text" => "gary say hello"}) do
-    "Hello, it's <rolls dice> nice to meet you."
+    %{text: "Hello, it's <rolls dice> nice to meet you."}
+  end
+
+  def handle_gary_request(%{"text" => "gary when is the next encounter?"}) do
+    %{
+    	fallback: "The next encounter will occur in:",
+    	color: "good",
+    	fields: encounter_fields 
+    }
+  end
+
+  def encounter_fields do
+    [elem(Dicer.roll("1d20"), 2)
+    |> next_forest_marsh_encounter]
+  end
+    
+  def next_forest_marsh_encounter(roll) do
+  	%{ 
+  		title: "forest/marsh",
+  	  value: case roll do
+	  		1	-> "There will be an encounter in the next watch period."
+	    	_ -> "There will never be another encounter."
+	    end,
+	    short: "false"
+	  }
   end
 
   def handle_gary_request(_params) do
-    "African or European?"
+    %{text: "African or European?"}
   end
 
   def create(conn, _params) do
@@ -42,4 +66,5 @@ defmodule Gary.PageController do
       
   end
 
+  
 end

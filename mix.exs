@@ -26,6 +26,7 @@ defmodule Gary.Mixfile do
      {:cowboy, "~> 1.0"},
      { :json,   "~> 0.3.0"},
      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.0"},
-     {:httpotion, "~> 0.2.0"}]
+     {:httpotion, "~> 0.2.0"},
+     {:dicer, "0.4.0"}]
   end
 end
