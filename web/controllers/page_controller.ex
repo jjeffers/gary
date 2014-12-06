@@ -70,7 +70,7 @@ defmodule Gary.PageController do
 	    	9 -> "1 day 3 periods/1 day 4 periods/2 days 5 periods"
 	    	10 -> "1 day 4 periods/2 days/3 days 2 periods"
 	    	11 -> "1 day 5 periods/2 days 2 periods/3 days 4 periods"
-	    	12 -> "2 days 1 period/2 day 3 periods/4 days 2 periods"
+	    	12 -> "2 days 1 period/2 days 3 periods/4 days 2 periods"
 	    	13 -> "2 days 3 periods/3 days/4 days 5 periods"
 	    	14 -> "2 days 3 periods/3 days 2 periods/5 days 4 periods"
 	    	15 -> "3 days 1 period/3 days 5 periods/6 days 3 periods"
@@ -78,7 +78,36 @@ defmodule Gary.PageController do
 	    	17 -> "4 days 2 periods/5 days 1 period/8 days 4 periods"
 	    	18 -> "4 days 1 period/6 days 1 period/10 days 2 periods"
 	    	19 -> "6 days 2 periods/7 days 4 periods/12 days 5 periods"
-	    	20 -> "9 days/10 days 5 perioda/18 days 1 period"
+	    	20 -> "9 days/10 days 5 periods/18 days 1 period"
+	    end,
+	    short: "false"
+	  }
+  end
+
+  def next_desert_hills_rough_plains_encounter(roll) do
+  	%{ 
+  		title: "desert/hills/rough/plains",
+  	  value: case roll do
+	  		1	-> "1 period/1 period/1 period"
+	    	2 -> "2 period/2 periods/4 periods"
+	    	3 -> "4 periods/1 period/1 day"
+	    	4 -> "4 periods/5 periods/1 day 2 periods"
+	    	5	-> "5 periods/a day/1 day 5 periods"
+	    	6 -> "1 day 1 period/1 day 2 periods/2 days 1 period"
+	    	7 -> "1 day 2 periods/1 day 4 periods/2 days 4 periods"
+	    	8 -> "1 day 4 period1/2 days/3 days 1 period"
+	    	9 -> "1 day 5 periods/2 days 2 periods/3 days 4 periods"
+	    	10 -> "2 days 1 period/2 days 4 periods/4 days 2 periods"
+	    	11 -> "2 day 3 periods/3 days/5 days"
+	    	12 -> "2 days 5 periods/3 days 3 periods/5 days 4 periods"
+	    	13 -> "3 days 2 periods/4 days/6 days 3 periods"
+	    	14 -> "3 days 4 periods/4 days 3 periods/7 days 3 periods"
+	    	15 -> "4 days 2 periods/5 days 1 period/8 days 3 periods"
+	    	16 -> "5 days/6 days/9 days 5 periods"
+	    	17 -> "5 days 4 periods/6 days 5 periods/11 days 3 periods"
+	    	18 -> "6 days 5 period/8 days 1 period/13 days 5 periods"
+	    	19 -> "8 days 3 periods/10 days 1 period/17 days 1 period"
+	    	20 -> "12 days/14 days 3 periods/24 days 2 periods"
 	    end,
 	    short: "false"
 	  }
@@ -105,8 +134,11 @@ defmodule Gary.PageController do
   end
 
   def encounter_fields do
-  	[next_forest_marsh_encounter(elem(Dicer.roll("1d20"),2)), 
-  	 next_scrub_encounter(elem(Dicer.roll("1d20"),2))]
+  	roll = elem(Dicer.roll("1d20"),2)
+
+  	[next_forest_marsh_encounter(roll), 
+  	 next_scrub_encounter(roll),
+  	 next_desert_hills_rough_plains_encounter(roll)]
   end
     
 
