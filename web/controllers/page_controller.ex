@@ -26,26 +26,7 @@ defmodule Gary.PageController do
 
   end
 
-
-  def handle_gary_request(%{"text" => "gary say hello"}) do
-    %{text: "Hello, it's <rolls dice> nice to meet you."}
-  end
-
-  def handle_gary_request(%{"text" => "gary when is the next encounter?"}) do
-    %{
-    	fallback: "The next encounter will occur in:",
-    	text: "The next encounter will occur in: (unihabited/sparse/dense)",
-    	color: "good",
-    	fields: encounter_fields 
-    }
-  end
-
-  def encounter_fields do
-    [elem(Dicer.roll("1d20"), 2)
-    |> next_forest_marsh_encounter]
-  end
-    
-  def next_forest_marsh_encounter(roll) do
+    def next_forest_marsh_encounter(roll) do
   	%{ 
   		title: "forest/marsh",
   	  value: case roll do
@@ -70,7 +51,7 @@ defmodule Gary.PageController do
 	    	19 -> "4 days 1 period/5 days/8 days 3 periods"
 	    	20 -> "6 days/7 days 1 period/12 days"
 	    end,
-	    short: "true"
+	    short: "false"
 	  }
   end
 
@@ -99,13 +80,36 @@ defmodule Gary.PageController do
 	    	19 -> "6 days 2 periods/7 days 4 periods/12 days 5 periods"
 	    	20 -> "9 days/10 days 5 perioda/18 days 1 period"
 	    end,
-	    short: "true"
+	    short: "false"
 	  }
   end
+
+
+  def handle_gary_request(%{"text" => "gary say hello"}) do
+    %{text: "Hello, it's <rolls dice> nice to meet you."}
+  end
+
+  def handle_gary_request(%{"text" => "gary when is the next encounter?"}) do
+    %{
+    	fallback: "The next encounter will occur in:",
+    	text: "The next encounter will occur in: (unihabited/sparse/dense)",
+    	color: "good",
+    	fields: encounter_fields 
+    }
+  end
+
+
 
   def handle_gary_request(_params) do
     %{text: "African or European?"}
   end
+
+  def encounter_fields do
+  	[next_forest_marsh_encounter(elem(Dicer.roll("1d20"),2)), 
+  	 next_scrub_encounter(elem(Dicer.roll("1d20"),2))]
+  end
+    
+
 
   def create(conn, _params) do
 
