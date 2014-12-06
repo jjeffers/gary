@@ -46,12 +46,21 @@ defmodule Gary.PageController do
     
   def next_forest_marsh_encounter(roll) do
   	%{ 
-  		title: "forest/marsh",
+  		title: "forest/marsh (unihabited/sparse/dense)",
   	  value: case roll do
-	  		1	-> "There will be an encounter in the next watch period."
+	  		1	-> "1 period/1 period/1 period"
+	    	2 -> "1 period/1 period/2 periods"
+	    	3 -> "2 periods/2 period/3 periods"
+	    	4 -> "2 periods/3 periods/4 periods"
+	    	5	-> "3 period2/3 period/5 periods"
+	    	6 -> "4 periods/4 period/1 day 1 period"
+	    	7 -> "4 periods/5 periods/1 day 2 periods"
+	    	8 -> "5 periods/1 day/1 day 4 periods"
+	    	9 -> "1 day/1 day 1 period/1 day 5 periods"
 	    	_ -> "There will never be another encounter."
+
 	    end,
-	    short: "false"
+	    short: "true"
 	  }
   end
 
