@@ -28,7 +28,7 @@ defmodule Gary.PageController do
 
     def next_forest_marsh_encounter(roll) do
   	%{ 
-  		title: "forest/marsh",
+  		title: "forest or marsh",
   	  value: case roll do
 	  		1	-> "1 period/1 period/1 period"
 	    	2 -> "1 period/1 period/2 periods"
@@ -86,7 +86,7 @@ defmodule Gary.PageController do
 
   def next_desert_hills_rough_plains_encounter(roll) do
   	%{ 
-  		title: "desert/hills/rough/plains",
+  		title: "desert, hills, rough, or plains",
   	  value: case roll do
 	  		1	-> "1 period/1 period/1 period"
 	    	2 -> "2 period/2 periods/4 periods"
