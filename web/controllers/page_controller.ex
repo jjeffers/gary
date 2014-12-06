@@ -60,7 +60,7 @@ defmodule Gary.PageController do
   		title: "scrub",
   	  value: case roll do
 	  		1	-> "1 period/1 period/1 period"
-	    	2 -> "2 period/2 periods/3 periods"
+	    	2 -> "2 periods/2 periods/3 periods"
 	    	3 -> "2 periods/3 period/4 periods"
 	    	4 -> "3 periods/4 periods/1 day"
 	    	5	-> "4 periods/5 period/1 day 2 periods"
@@ -89,7 +89,7 @@ defmodule Gary.PageController do
   		title: "desert, hills, rough, or plains",
   	  value: case roll do
 	  		1	-> "1 period/1 period/1 period"
-	    	2 -> "2 period/2 periods/4 periods"
+	    	2 -> "2 periods/2 periods/4 periods"
 	    	3 -> "4 periods/1 period/1 day"
 	    	4 -> "4 periods/5 periods/1 day 2 periods"
 	    	5	-> "5 periods/1 day/1 day 5 periods"
@@ -118,10 +118,10 @@ defmodule Gary.PageController do
   		title: "mountains",
   	  value: case roll do
 	  		1	-> "1 period/1 period/2 periods"
-	    	2 -> "3 period/3 periods/5 periods"
+	    	2 -> "3 periods/3 periods/5 periods"
 	    	3 -> "4 periods/5 periods/1 day 2 periods"
 	    	4 -> "1 day/1 day 1 period/2 days"
-	    	5	-> "1 day 2 periods/1 4 periods/2 days 4 periods"
+	    	5	-> "1 day 2 periods/1 day 4 periods/2 days 4 periods"
 	    	6 -> "1 day 4 periods/2 days/3 days 2 periods"
 	    	7 -> "2 days/2 days 2 periods/2 days"
 	    	8 -> "2 days 2 periods/2 days 5 periods/4 days 4 periods"
@@ -137,6 +137,35 @@ defmodule Gary.PageController do
 	    	18 -> "10 days 2 period/12 days 2 periods/20 days 4 periods"
 	    	19 -> "12 days 5 periods/15 days 2 periods/25 days 5 periods"
 	    	20 -> "18 days 1 period/21 days 5 periods/36 days 4 periods"
+	    end,
+	    short: "false"
+	  }
+  end
+
+  def next_water_encounter(roll) do
+  	%{ 
+  		title: "water (fresh/coastal sea/open sea)",
+  	  value: case roll do
+	  		1	-> "1 period/2 periods/4 periods"
+	    	2 -> "4 periods/5 periods/1 day 4 periods"
+	    	3 -> "1 day/1 day 2 periods/2 days 4 periods"
+	    	4 -> "1 day 2 periods/2 days/3 days 5 periods"
+	    	5	-> "1 day 5 periods/2 days 4 periods/5 days 1 period"
+	    	6 -> "2 days 1 period/3 days 2 periods/6 days 3 periods"
+	    	7 -> "2 days 4 periods/4 days/7 days 5 periods"
+	    	8 -> "3 days 1 period/4 days 4 periods/9 days 3 periods"
+	    	9 -> "3 days 4 periods/5 days 3 periods/11 days 1 period"
+	    	10 -> "4 days 2 periods/6 days 3 periods/13 days"
+	    	11 -> "5 days/7 days 3 periods/14 days 5 periods"
+	    	12 -> "5 days 4 periods/8 days 3 periods/17 days 1 period"
+	    	13 -> "6 days 3 periods/9 days 5 periods/19 days 4 periods"
+	    	14 -> "7 days 3 periods/11 days 1 period/22 days 3 periods"
+	    	15 -> "8 days 3 periods/12 days 5 periods/25 days 5 periods"
+	    	16 -> "9 days 5 periods/14 days 5 periods/29 days 5 periods"
+	    	17 -> "11 days 3 periods/17 days 2 periods/34 days 5 periods"
+	    	18 -> "13 days 5 periods/20 days 4 periods/41 days 3 periods"
+	    	19 -> "17 days 5 periods/25 days 5 periods/51 days 4 periods"
+	    	20 -> "24 days 2 periods/36 days 4 periods/73 days 3 periods"
 	    end,
 	    short: "false"
 	  }
@@ -166,7 +195,8 @@ defmodule Gary.PageController do
   	[next_forest_marsh_encounter(roll), 
   	 next_scrub_encounter(roll),
   	 next_desert_hills_rough_plains_encounter(roll),
-  	 next_mountains_encounter(roll)]
+  	 next_mountains_encounter(roll),
+  	 next_water_encounter(roll)]
   end
     
 
