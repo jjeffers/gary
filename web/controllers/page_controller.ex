@@ -57,8 +57,17 @@ defmodule Gary.PageController do
 	    	7 -> "4 periods/5 periods/1 day 2 periods"
 	    	8 -> "5 periods/1 day/1 day 4 periods"
 	    	9 -> "1 day/1 day 1 period/1 day 5 periods"
-	    	_ -> "There will never be another encounter."
-
+	    	10 -> "1 day 1 period/1 day 2 periods/2 days 1 period"
+	    	11 -> "1 day 2 periods/1 day 3 periods/2 days 3 periods"
+	    	12 -> "1 day 3 periods/1 day 4 periods/2 days 5 periods"
+	    	13 -> "1 day 4 periods/2 days/3 days 2 periods"
+	    	14 -> "1 day 5 periods/2 days 1 period/3 days 4 periods"
+	    	15 -> "2 days 1 period/2 days 3 periods/4 days 2 periods"
+	    	16 -> "2 days 3 periods/3 days/5 days"
+	    	17 -> "2 days 5 periods/3 days 3 periods/5 days 4 periods"
+	    	18 -> "3 days 2 periods/4 days/6 days 5 periods"
+	    	19 -> "4 days 1 period/5 days/8 days 3 periods"
+	    	20 -> "6 days/7 days 1 period/12 days"
 	    end,
 	    short: "true"
 	  }
