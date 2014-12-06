@@ -91,8 +91,8 @@ defmodule Gary.PageController do
 
   def handle_gary_request(%{"text" => "gary when is the next encounter?"}) do
     %{
-    	fallback: "The next encounter will occur in:",
-    	text: "The next encounter will occur in: (unihabited/sparse/dense)",
+    	fallback: "The next encounter will occur in: (unihabited/sparse/dense)",
+    	pretext: "The next encounter will occur in: (unihabited/sparse/dense)",
     	color: "good",
     	fields: encounter_fields 
     }
