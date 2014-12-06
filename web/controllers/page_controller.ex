@@ -92,7 +92,7 @@ defmodule Gary.PageController do
 	    	2 -> "2 period/2 periods/4 periods"
 	    	3 -> "4 periods/1 period/1 day"
 	    	4 -> "4 periods/5 periods/1 day 2 periods"
-	    	5	-> "5 periods/a day/1 day 5 periods"
+	    	5	-> "5 periods/1 day/1 day 5 periods"
 	    	6 -> "1 day 1 period/1 day 2 periods/2 days 1 period"
 	    	7 -> "1 day 2 periods/1 day 4 periods/2 days 4 periods"
 	    	8 -> "1 day 4 period1/2 days/3 days 1 period"
@@ -113,6 +113,35 @@ defmodule Gary.PageController do
 	  }
   end
 
+  def next_mountains_encounter(roll) do
+  	%{ 
+  		title: "mountains",
+  	  value: case roll do
+	  		1	-> "1 period/1 period/2 periods"
+	    	2 -> "3 period/3 periods/5 periods"
+	    	3 -> "4 periods/5 periods/1 day 2 periods"
+	    	4 -> "1 day/1 day 1 period/2 days"
+	    	5	-> "1 day 2 periods/1 4 periods/2 days 4 periods"
+	    	6 -> "1 day 4 periods/2 days/3 days 2 periods"
+	    	7 -> "2 days/2 days 2 periods/2 days"
+	    	8 -> "2 days 2 periods/2 days 5 periods/4 days 4 periods"
+	    	9 -> "2 days 5 periods/3 days 2 periods/5 days 3 periods"
+	    	10 -> "3 days 2 periods/3 days 5 periods/6 days 3 periods"
+	    	11 -> "3 day 4 periods/4 days 3 periods/7 days 3 periods"
+	    	12 -> "4 days 2 periods/5 days 1 period/8 days 3 periods"
+	    	13 -> "4 days 5 periods/5 days 5 periods/9 days 5 periods"
+	    	14 -> "5 days 4 periods/6 days 4 periods/11 days 1 period"
+	    	15 -> "6 days 3 periods/7 days 2 periods/12 days 5 periods"
+	    	16 -> "7 days 2 periods/8 days 5 periods/14 days 5 periods"
+	    	17 -> "8 days 4 periods/10 days 2 periods/17 days 2 periods"
+	    	18 -> "10 days 2 period/12 days 2 periods/20 days 4 periods"
+	    	19 -> "12 days 5 periods/15 days 2 periods/25 days 5 periods"
+	    	20 -> "18 days 1 period/21 days 5 periods/36 days 4 periods"
+	    end,
+	    short: "false"
+	  }
+  end
+
 
   def handle_gary_request(%{"text" => "gary say hello"}) do
     %{text: "Hello, it's <rolls dice> nice to meet you."}
@@ -127,8 +156,6 @@ defmodule Gary.PageController do
     }
   end
 
-
-
   def handle_gary_request(_params) do
     %{text: "African or European?"}
   end
@@ -138,7 +165,8 @@ defmodule Gary.PageController do
 
   	[next_forest_marsh_encounter(roll), 
   	 next_scrub_encounter(roll),
-  	 next_desert_hills_rough_plains_encounter(roll)]
+  	 next_desert_hills_rough_plains_encounter(roll),
+  	 next_mountains_encounter(roll)]
   end
     
 
