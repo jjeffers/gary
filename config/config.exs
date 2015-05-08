@@ -5,18 +5,14 @@
 # is restricted to this project.
 use Mix.Config
 
-# Configures the router
-config :phoenix, Gary.Router,
+# Configures the endpoint
+config :gary, Gary.Endpoint,
   url: [host: "localhost"],
-  http: [port: System.get_env("PORT")],
-  secret_key_base: "HJSqtwudh5aOBBslE4wrPSJwFBAsuXV1oIGDBNfxJCoSqf0hSc5XKSH4NSkCui9yn0hADs/TosHOPXyTdOQYTg==",
+  root: Path.expand("..", __DIR__),
+  secret_key_base: "nDqIfRjq8WQxUUGbbnS9PDsFoVjiVNNnFJIZ/eKPg4ZXeAZDSvTvfbOfyb5aDhQm",
   debug_errors: false,
-  error_controller: Gary.PageController
-
-# Session configuration
-config :phoenix, Gary.Router,
-  session: [store: :cookie,
-            key: "_gary_key"]
+  pubsub: [name: Gary.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

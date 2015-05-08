@@ -1,3 +1,3 @@
 defmodule Gary.PageView do
-  use Gary.View
+  use Gary.Web, :view
 end

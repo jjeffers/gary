@@ -1,20 +1,21 @@
 defmodule Gary.Router do
-  use Phoenix.Router
+  use Gary.Web, :router
 
   pipeline :browser do
-    plug :accepts, ~w(html)
+    plug :accepts, ["html"]
     plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
   end
 
   pipeline :api do
-    plug :accepts, ~w(json)
+    plug :accepts, ["json"]
   end
 
   scope "/", Gary do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    post "/", PageController, :create
   end
 
   # Other scopes may use custom stacks.

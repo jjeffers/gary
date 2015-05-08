@@ -1,5 +1,5 @@
 defmodule Gary.PageController do
-  use Phoenix.Controller
+  use Gary.Web, :controller
 
   plug :action
 
@@ -32,19 +32,19 @@ defmodule Gary.PageController do
 
   def handle_gary_request(%{"text" => "gary when is the next outdoor encounter?"}) do
     %{
-    	fallback: "The next encounter will occur in: (unihabited/sparse/dense)",
-    	pretext: "The next encounter will occur in: (unihabited/sparse/dense)",
-    	color: "good",
-    	fields: Gary.OutdoorTiming.next_encounter_fields 
+      fallback: "The next encounter will occur in: (unihabited/sparse/dense)",
+      pretext: "The next encounter will occur in: (unihabited/sparse/dense)",
+      color: "good",
+      fields: Gary.OutdoorTiming.next_encounter_fields 
     }
   end
 
   def handle_gary_request(%{"text" => "gary generate an outdoor encounter"}) do
     %{
-    	fallback: "Outdoor encounter!",
-    	pretext: "Outdoor encounter!",
-    	color: "good",
-    	fields: Gary.OutdoorEncounter.generate_encounter_fields 
+      fallback: "Outdoor encounter!",
+      pretext: "Outdoor encounter!",
+      color: "good",
+      fields: Gary.OutdoorEncounter.generate_encounter_fields 
     }
   end
 
@@ -58,6 +58,5 @@ defmodule Gary.PageController do
     text conn, send_slack_response(response_text)
       
   end
-
   
 end

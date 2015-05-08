@@ -1,3 +1,3 @@
 defmodule Gary.LayoutView do
-  use Gary.View
+  use Gary.Web, :view
 end
